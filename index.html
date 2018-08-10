@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <script>
+        fetch('https://swapi.co/api/people/1/')
+            .then((resposta) => {
+                return resposta.json();
+            }).then((resposta) => {
+                document.write('<h1>' + resposta.name + '</h1>');
+            })
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
