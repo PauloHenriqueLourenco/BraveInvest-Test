@@ -26,12 +26,36 @@
                 }
             });
         }
+
+
+        $(document).ready(function () {
+            $('#buscar').click(function () {
+                $('#residentes').html('');
+                const url = $("#planeta option:selected").val();
+                $.getJSON(url, function (data) {
+
+                    var residentes = data.residents.map((item) => { return item });
+
+                    for (var i = 0; i < residentes.length; i++) {
+                        var residenteUrl = residentes[i];
+
+                        $.getJSON(residenteUrl, function (data) {
+
+                            $('#residentes').append('<li>' + data.name + '</li>');
+
+                        });
+                    }
+                });
+            });
+        });
     </script>
 </head>
 
 <body>
     <select id="planeta"></select>
     <input type="button" id="buscar" value="Buscar">
+
+    <ul id="residentes"></ul>
 </body>
 
 </html>
